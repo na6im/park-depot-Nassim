@@ -17,7 +17,6 @@ export const LoaderWrapper = styled(Container)`
 export const ListItems = styled.div<{ layout: string }>`
   position: relative;
   grid-area: content;
-  height: 100%;
   width: 100%;
   display: grid;
   grid-template-columns: ${(props) =>
@@ -27,6 +26,5 @@ export const ListItems = styled.div<{ layout: string }>`
   column-gap: 1rem;
   row-gap: 1rem;
   overflow: auto;
-  margin: auto;
   align-items: center;
 `

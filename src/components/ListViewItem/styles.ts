@@ -11,8 +11,14 @@ export const ListItemContainer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid #505050;
+  border: 1px solid #9a9a9a;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  transition: all 300ms ease;
+
+  :hover {
+    transform: scale(1.05);
+    cursor: pointer;
+  }
 
   img {
     width: 300px;

@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 
 export const GalleryItemContainer = styled.div`
   position: relative;
-  height: 200px;
+  height: 400px;
   margin: 10px;
   flex-shrink: 0;
   border-radius: 8px;
@@ -13,6 +13,7 @@ export const GalleryItemContainer = styled.div`
 
   :hover {
     transform: scale(1.05);
+    cursor: pointer;
   }
 
   > img {

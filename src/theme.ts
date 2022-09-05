@@ -7,7 +7,7 @@ const theme = createTheme({
   },
   palette: {
     primary: {
-      main: '#000',
+      main: '#fff',
     },
     error: {
       main: '#E50914',

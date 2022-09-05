@@ -1,20 +1,22 @@
-import { useState } from 'react'
-import { useQuery } from '@apollo/client'
+import { useEffect, useState } from 'react'
+import { useLazyQuery } from '@apollo/client'
 import { GET_SHIPS } from '../queries'
 import { useIntersection } from './useIntersection'
-import { Ships, ShipsResult } from '../types'
+import { Ships, ShipType } from '../types'
 
 export function useGetShips() {
   const [loadingMore, setLoadingMore] = useState(false)
   const [hasMore, setHasMore] = useState(true)
+  const [shipType, setType] = useState<ShipType>(ShipType.ALL)
 
-  const { data, loading, fetchMore, error, refetch } = useQuery<
+  const [getShips, { data, loading, fetchMore, error, refetch }] = useLazyQuery<
     { ships: Ships },
-    { limit: number; offset: number }
+    { limit: number; offset: number; find: { type: string } }
   >(GET_SHIPS, {
     variables: {
       limit: 10,
       offset: 0,
+      find: { type: shipType === ShipType.ALL ? '' : shipType },
     },
   })
 
@@ -23,7 +25,6 @@ export function useGetShips() {
 
     setLoadingMore(true)
 
-    console.log(data?.ships?.length)
     await fetchMore({
       variables: {
         offset: data?.ships?.length,
@@ -48,7 +49,26 @@ export function useGetShips() {
 
   const ref = useIntersection(onNexPage)
 
-  const refetchData = () => refetch({ limit: 10, offset: 0 })
+  const refetchData = () => {
+    setHasMore(true)
+    refetch({ limit: 10, offset: 0, find: { type: shipType ?? '' } })
+  }
 
-  return { ref, data, loading, error, loadingMore, refetchData }
+  useEffect(() => {
+    getShips()
+  }, [])
+
+  useEffect(() => {
+    setHasMore(true)
+  }, [shipType])
+
+  return {
+    ref,
+    ships: data?.ships,
+    loading,
+    error,
+    loadingMore,
+    refetchData,
+    typeOptions: { shipType, setType },
+  }
 }

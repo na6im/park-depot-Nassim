@@ -11,25 +11,26 @@ import { ListContainer, ListItems, LoaderWrapper } from './styles'
 function App() {
   const [Layout, setLayout] = useState('gallery')
 
-  const { ref, data, loading, error, loadingMore, refetchData } = useGetShips()
+  const { ref, ships, loading, error, loadingMore, refetchData, typeOptions } = useGetShips()
 
   const ItemComponent = Layout === 'list' ? ListViewItem : GalleryViewItem
 
   if (error) return <ErrorScreen retry={refetchData} />
 
-  if (loading) return <LoadingScreen />
-
   return (
     <AppLayout>
       <ListContainer maxWidth='xl'>
-        <FiltersBar layout={Layout} setLayout={setLayout} />
-        <ListItems layout={Layout}>
-          {data &&
-            data.ships?.map((ship, index) => {
-              const isLast = index === data.ships.length - 1
+        <FiltersBar layout={Layout} setLayout={setLayout} typeOptions={typeOptions} />
+        {loading ? (
+          <LoadingScreen />
+        ) : (
+          <ListItems layout={Layout}>
+            {ships?.map((ship, index) => {
+              const isLast = index === ships.length - 1
               return <ItemComponent key={ship.id} {...ship} ref={isLast ? ref : undefined} />
             })}
-        </ListItems>
+          </ListItems>
+        )}
 
         {loadingMore && (
           <LoaderWrapper>

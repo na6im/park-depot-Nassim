@@ -4,6 +4,8 @@ export type Ship = {
   class: string
   name: string
   home_port: string
+  type: string
+  year_built: number
 }
 
 export type ShipsResult = {
@@ -12,3 +14,10 @@ export type ShipsResult = {
   }
 }
 export type Ships = Array<Ship>
+
+export enum ShipType {
+  CRAFT = 'High Speed Craft',
+  CARGO = 'Cargo',
+  BARGE = 'Barge',
+  ALL = 'All',
+}

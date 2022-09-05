@@ -8,7 +8,7 @@ export function useGetShips() {
   const [loadingMore, setLoadingMore] = useState(false)
   const [hasMore, setHasMore] = useState(true)
 
-  const { data, loading, fetchMore, error } = useQuery<
+  const { data, loading, fetchMore, error, refetch } = useQuery<
     { ships: Ships },
     { limit: number; offset: number }
   >(GET_SHIPS, {
@@ -48,5 +48,7 @@ export function useGetShips() {
 
   const ref = useIntersection(onNexPage)
 
-  return { ref, data, loading, error, loadingMore }
+  const refetchData = () => refetch({ limit: 10, offset: 0 })
+
+  return { ref, data, loading, error, loadingMore, refetchData }
 }

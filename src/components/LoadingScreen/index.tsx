@@ -30,7 +30,7 @@ export const LoaderComponent = styled.div<{ size?: number }>`
     content: '';
     height: ${(props) => props.size ?? 70}px;
     width: ${(props) => props.size ?? 70}px;
-    background-color: var(--primary);
+    background-color: black;
     border-radius: 50%;
     position: absolute;
     right: 0;
@@ -41,7 +41,7 @@ export const LoaderComponent = styled.div<{ size?: number }>`
     content: '';
     height: ${(props) => props.size ?? 70}px;
     width: ${(props) => props.size ?? 70}px;
-    background-color: #383c43;
+    background-color: black;
     border-radius: 50%;
     position: absolute;
     left: 0;

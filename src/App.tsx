@@ -5,7 +5,8 @@ import GalleryViewItem from './components/GalleryViewItem'
 import AppLayout from './Layout'
 import FiltersBar from './components/FiltersBar'
 import { useGetShips } from './hooks/useGetShips'
-import { ListContainer, ListItems } from './styles'
+import { ListContainer, ListItems, LoaderWrapper } from './styles'
+import LoadingScreen, { LoaderComponent } from './components/LoadingScreen'
 
 function App() {
   const [Layout, setLayout] = useState('gallery')
@@ -14,7 +15,7 @@ function App() {
 
   const ItemComponent = Layout === 'list' ? ListViewItem : GalleryViewItem
 
-  if (loading) return <Typography variant='subtitle1'>loading...</Typography>
+  if (loading) return <LoadingScreen />
   if (error) return <Typography variant='subtitle1'>error...</Typography>
 
   return (
@@ -29,7 +30,11 @@ function App() {
             })}
         </ListItems>
 
-        {loadingMore && <div style={{ height: '100px' }}>loading...</div>}
+        {loadingMore && (
+          <LoaderWrapper>
+            <LoaderComponent size={25} />
+          </LoaderWrapper>
+        )}
       </ListContainer>
     </AppLayout>
   )

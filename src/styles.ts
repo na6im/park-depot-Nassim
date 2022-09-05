@@ -9,6 +9,11 @@ export const ListContainer = styled(Container)`
   flex-direction: column;
 `
 
+export const LoaderWrapper = styled(Container)`
+  height: 100px;
+  display: flex;
+`
+
 export const ListItems = styled.div<{ layout: string }>`
   position: relative;
   grid-area: content;

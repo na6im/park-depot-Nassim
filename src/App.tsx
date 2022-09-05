@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import ListViewItem from './components/ListViewItem'
 import GalleryViewItem from './components/GalleryViewItem'
 import { useGetShips } from './hooks/useGetShips'
@@ -17,20 +17,22 @@ function App() {
 
   if (error) return <ErrorScreen retry={refetchData} />
 
+  const listItems = useMemo(
+    () => (
+      <ListItems layout={Layout}>
+        {ships?.map((ship, index) => {
+          const isLast = index === ships.length - 1
+          return <ItemComponent key={ship.id} {...ship} ref={isLast ? ref : undefined} />
+        })}
+      </ListItems>
+    ),
+    [ships, Layout],
+  )
   return (
     <AppLayout>
       <ListContainer maxWidth='xl'>
         <FiltersBar layout={Layout} setLayout={setLayout} typeOptions={typeOptions} />
-        {loading ? (
-          <LoadingScreen />
-        ) : (
-          <ListItems layout={Layout}>
-            {ships?.map((ship, index) => {
-              const isLast = index === ships.length - 1
-              return <ItemComponent key={ship.id} {...ship} ref={isLast ? ref : undefined} />
-            })}
-          </ListItems>
-        )}
+        {loading ? <LoadingScreen /> : listItems}
 
         {loadingMore && (
           <LoaderWrapper>

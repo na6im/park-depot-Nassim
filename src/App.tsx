@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Container, Typography } from '@mui/material'
+import { useQuery } from '@apollo/client'
+import { GET_SHIPS } from './queries'
 
 function App() {
+  const { data, loading, error } = useQuery<
+    { image: string; class: string; name: string },
+    { limit: number; offset: number }
+  >(GET_SHIPS, {
+    variables: {
+      limit: 10,
+      offset: 0,
+    },
+  })
+
+  console.log(data, loading, error)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Container maxWidth='xl' style={{ height: '100%' }}>
+      <Typography color='primary'>App</Typography>
+    </Container>
+  )
 }
 
-export default App;
+export default App

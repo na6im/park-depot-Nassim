@@ -1,24 +1,37 @@
-import React from 'react'
-import { Container, Typography } from '@mui/material'
-import { useQuery } from '@apollo/client'
-import { GET_SHIPS } from './queries'
+import React, { useState } from 'react'
+import { Typography } from '@mui/material'
+import ListViewItem from './components/ListViewItem'
+import GalleryViewItem from './components/GalleryViewItem'
+import AppLayout from './Layout'
+import FiltersBar from './components/FiltersBar'
+import { useGetShips } from './hooks/useGetShips'
+import { ListContainer, ListItems } from './styles'
 
 function App() {
-  const { data, loading, error } = useQuery<
-    { image: string; class: string; name: string },
-    { limit: number; offset: number }
-  >(GET_SHIPS, {
-    variables: {
-      limit: 10,
-      offset: 0,
-    },
-  })
+  const [Layout, setLayout] = useState('gallery')
 
-  console.log(data, loading, error)
+  const { ref, data, loading, error, loadingMore } = useGetShips()
+
+  const ItemComponent = Layout === 'list' ? ListViewItem : GalleryViewItem
+
+  if (loading) return <Typography variant='subtitle1'>loading...</Typography>
+  if (error) return <Typography variant='subtitle1'>error...</Typography>
+
   return (
-    <Container maxWidth='xl' style={{ height: '100%' }}>
-      <Typography color='primary'>App</Typography>
-    </Container>
+    <AppLayout>
+      <ListContainer maxWidth='xl'>
+        <FiltersBar layout={Layout} setLayout={setLayout} />
+        <ListItems layout={Layout}>
+          {data &&
+            data.ships?.map((ship, index) => {
+              const isLast = index === data.ships.length - 1
+              return <ItemComponent key={ship.id} {...ship} ref={isLast ? ref : undefined} />
+            })}
+        </ListItems>
+
+        {loadingMore && <div style={{ height: '100px' }}>loading...</div>}
+      </ListContainer>
+    </AppLayout>
   )
 }
 

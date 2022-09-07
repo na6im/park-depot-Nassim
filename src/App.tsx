@@ -9,9 +9,13 @@ import FiltersBar from './components/FiltersBar'
 import { ListContainer, ListItems, LoaderWrapper } from './styles'
 
 function App() {
-  const [Layout, setLayout] = useState('gallery')
-
   const { ref, ships, loading, error, loadingMore, refetchData, typeOptions } = useGetShips()
+  const [Layout, setLayout] = useState(() => localStorage.getItem('LAYOUT') ?? 'gallery')
+
+  const onSetLayout = (l: string) => {
+    localStorage.setItem('LAYOUT', l)
+    setLayout(l)
+  }
 
   const ItemComponent = Layout === 'list' ? ListViewItem : GalleryViewItem
 
@@ -31,7 +35,7 @@ function App() {
   return (
     <AppLayout>
       <ListContainer maxWidth='xl'>
-        <FiltersBar layout={Layout} setLayout={setLayout} typeOptions={typeOptions} />
+        <FiltersBar setLayout={onSetLayout} typeOptions={typeOptions} />
         {loading ? <LoadingScreen /> : listItems}
 
         {loadingMore && (

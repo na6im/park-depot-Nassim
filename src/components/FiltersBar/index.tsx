@@ -7,14 +7,14 @@ import gallery from '../../assets/square.svg'
 import { ShipType } from '../../types'
 
 interface FiltersProps {
-  layout: string
   setLayout: (el: string) => void
   typeOptions: {
     shipType: ShipType
     setType: Dispatch<SetStateAction<ShipType>>
   }
 }
-function FiltersBar({ layout, setLayout, typeOptions: { shipType, setType } }: FiltersProps) {
+
+function FiltersBar({ setLayout, typeOptions: { shipType, setType } }: FiltersProps) {
   const handleChangeType = (event: SelectChangeEvent) => {
     setType(event.target.value as ShipType)
   }
@@ -43,7 +43,7 @@ function FiltersBar({ layout, setLayout, typeOptions: { shipType, setType } }: F
           onChange={handleChangeType}
           variant='standard'
           placeholder='Ship Type'
-          sx={{ marginLeft: '10px', width: '100px' }}
+          sx={{ marginLeft: '10px', width: '200px', padding: '5px' }}
         >
           {Object.values(ShipType).map((key) => (
             <MenuItem value={key}>{key}</MenuItem>

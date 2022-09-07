@@ -10,6 +10,10 @@ export const GET_SHIPS = gql`
       active
       home_port
       image
+      roles
+      missions {
+        name
+      }
     }
   }
 `

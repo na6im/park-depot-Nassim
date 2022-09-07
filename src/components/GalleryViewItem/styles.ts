@@ -32,3 +32,22 @@ export const GalleryItemContainer = styled.div`
     padding-bottom: 20px;
   }
 `
+
+export const ActiveButton = styled.span<{ active: boolean }>`
+  position: absolute;
+  bottom: 20px;
+  right: 13px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: capitalize;
+
+  > div {
+    margin-left: 0.5em;
+    height: 13px;
+    width: 13px;
+    border-radius: 15px;
+    background-color: ${(props) => (props.active ? 'green' : 'red')};
+  }
+`

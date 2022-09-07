@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 export const ListItemContainer = styled.div`
   position: relative;
   height: 100px;
-  width: 80%;
+  width: 70%;
   margin: 5px auto;
   border-radius: 8px;
   overflow: hidden;
@@ -21,15 +21,16 @@ export const ListItemContainer = styled.div`
   }
 
   img {
-    width: 300px;
+    width: 30%;
     height: 100%;
     object-fit: cover;
     overflow: hidden;
     text-align: start;
+    margin-right: 2em;
   }
 
   > div {
-    width: 100%;
     padding: 10px;
+    flex: 1;
   }
 `

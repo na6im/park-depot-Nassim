@@ -10,11 +10,15 @@ export const ListContainer = styled(Container)`
 `
 
 export const LoaderWrapper = styled(Container)`
+  padding: 50px;
   height: 100px;
   display: flex;
 `
 
 export const ListItems = styled.div<{ layout: string }>`
+  ::-webkit-scrollbar {
+    display: none;
+  }
   position: relative;
   grid-area: content;
   width: 100%;

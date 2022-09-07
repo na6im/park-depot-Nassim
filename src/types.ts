@@ -6,6 +6,9 @@ export type Ship = {
   home_port: string
   type: string
   year_built: number
+  active: boolean
+  roles: string[]
+  missions: Array<{ name: string }>
 }
 
 export type ShipsResult = {

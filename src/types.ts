@@ -11,11 +11,6 @@ export type Ship = {
   missions: Array<{ name: string }>
 }
 
-export type ShipsResult = {
-  result: {
-    totalCount: number
-  }
-}
 export type Ships = Array<Ship>
 
 export enum ShipType {
@@ -23,4 +18,19 @@ export enum ShipType {
   CARGO = 'Cargo',
   BARGE = 'Barge',
   ALL = 'All',
+}
+
+export enum ViewType {
+  GALLERY = 'gallery',
+  LIST = 'list',
+}
+
+export interface ItemProps {
+  id: string
+  image: string
+  name: string
+  home_port: string
+  roles: string[]
+  active: boolean
+  missions: Array<{ name: string }>
 }

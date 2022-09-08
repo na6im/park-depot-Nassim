@@ -1,15 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-import App from './App'
+import Ships from './features/Ships'
 import reportWebVitals from './reportWebVitals'
 import Wrapper from './Wrapper'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
+
 root.render(
   <React.StrictMode>
     <Wrapper>
-      <App />
+      <Ships />
     </Wrapper>
   </React.StrictMode>,
 )

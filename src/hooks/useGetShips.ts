@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useLazyQuery } from '@apollo/client'
-import { GET_SHIPS } from '../queries'
+import { GET_SHIPS } from '../features/Ships/queries'
 import { useIntersection } from './useIntersection'
 import { Ships, ShipType } from '../types'
 
@@ -64,11 +64,15 @@ export function useGetShips() {
 
   return {
     ref,
-    ships: data?.ships,
-    loading,
-    error,
-    loadingMore,
-    refetchData,
+    reqData: {
+      ships: data?.ships,
+      loading,
+      error,
+    },
+    fetchMore: {
+      loadingMore,
+      refetchData,
+    },
     typeOptions: { shipType, setType },
   }
 }

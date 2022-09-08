@@ -1,54 +1,54 @@
 import React, { Dispatch, SetStateAction } from 'react'
-import { ButtonGroup, IconButton, MenuItem, Select, SelectChangeEvent } from '@mui/material'
-import { Container } from './styles'
+import { ButtonGroup, Button, MenuItem, SelectChangeEvent } from '@mui/material'
 
-import line from '../../assets/line.svg'
-import gallery from '../../assets/square.svg'
-import { ShipType } from '../../types'
+import { Container, SelectMenu } from './styles'
+import { ShipType, ViewType } from '../../types'
+import Line from '../../assets/Line'
+import Square from '../../assets/Square'
 
 interface FiltersProps {
-  setLayout: (el: string) => void
+  layout: string
+  setLayout: (el: ViewType) => void
   typeOptions: {
     shipType: ShipType
     setType: Dispatch<SetStateAction<ShipType>>
   }
 }
 
-function FiltersBar({ setLayout, typeOptions: { shipType, setType } }: FiltersProps) {
-  const handleChangeType = (event: SelectChangeEvent) => {
+function FiltersBar({ layout, setLayout, typeOptions: { shipType, setType } }: FiltersProps) {
+  const handleChangeType = (event: SelectChangeEvent<unknown>) => {
     setType(event.target.value as ShipType)
   }
+
+  const Icons: { [key: string]: ({ isActive }: { isActive: boolean }) => JSX.Element } = {
+    list: Line,
+    gallery: Square,
+  }
+
   return (
     <Container>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        View
-        <ButtonGroup
-          sx={{ marginLeft: '10px' }}
-          variant='text'
-          aria-label='outlined primary button group'
-        >
-          <IconButton onClick={() => setLayout('list')}>
-            <img style={{ width: '20px' }} src={line} alt='line' />
-          </IconButton>
-          <IconButton onClick={() => setLayout('gallery')}>
-            <img style={{ width: '20px' }} src={gallery} alt='gallery' />
-          </IconButton>
+      <div>
+        <span>View</span>
+        <ButtonGroup variant='contained' aria-label='outlined primary button group'>
+          {Object.values(ViewType).map((view) => {
+            const ViewIcon = Icons[view]
+            const onClick = () => setLayout(view)
+            const isActive = view === layout
+            return (
+              <Button variant={isActive ? 'contained' : 'text'} onClick={onClick}>
+                <ViewIcon isActive={isActive} />
+              </Button>
+            )
+          })}
         </ButtonGroup>
       </div>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        Type
-        <Select
-          value={shipType}
-          label='Type'
-          onChange={handleChangeType}
-          variant='standard'
-          placeholder='Ship Type'
-          sx={{ marginLeft: '10px', width: '200px', padding: '5px' }}
-        >
+      <div>
+        <span>Type</span>
+        <SelectMenu value={shipType} label='Type' onChange={handleChangeType} variant='standard'>
           {Object.values(ShipType).map((key) => (
             <MenuItem value={key}>{key}</MenuItem>
           ))}
-        </Select>
+        </SelectMenu>
       </div>
     </Container>
   )

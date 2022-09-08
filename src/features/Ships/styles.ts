@@ -29,6 +29,6 @@ export const ListItems = styled.div<{ layout: string }>`
       : 'repeat(auto-fill, 1fr)'};
   column-gap: 1rem;
   row-gap: 1rem;
-  overflow: auto;
+  overflow-x: hidden;
   align-items: center;
 `

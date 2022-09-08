@@ -7,12 +7,10 @@ export const GalleryItemContainer = styled.div`
   flex-shrink: 0;
   border-radius: 8px;
   overflow: hidden;
-  transition: all 300ms ease;
   cursor: pointer;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
   :hover {
-    transform: scale(1.05);
     cursor: pointer;
   }
 
@@ -30,11 +28,13 @@ export const GalleryItemContainer = styled.div`
     color: white;
     padding: 10px;
     padding-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
   }
 `
 
 export const ActiveButton = styled.span<{ active: boolean }>`
-  position: absolute;
   bottom: 20px;
   right: 13px;
   color: white;

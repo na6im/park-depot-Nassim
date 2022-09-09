@@ -1,46 +1,64 @@
-# Getting Started with Create React App
+<p align="center">
+  <h1 align="center">
+    <b align="center">Park Depot Coding Challenge</b>
+    </br>
+    <b align="center">Made with ❤️ by Nassim </b>
+  </h1>
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+<br>
 
-In the project directory, you can run:
+# 🧭 Step By Step Guide
 
-### `npm start`
+## 🚀 Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Let's start by cloning the repo locally
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```sh
+git clone git@github.com:na6im/park-depot-Nassim.git
+```
 
-### `npm test`
+install the dependencies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- `yarn`
 
-### `npm run build`
+## 🧼 Ready to run
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- `yarn start`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🧼 What was done?
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Here is the list of requested features and details done for the challenge
 
-### `npm run eject`
+- All in TypeScript 🎉
+- Latest version of React
+- Best practices for formatting, linting and coding
+- Fetch and display list of Ships
+- Feature based architecture for scalability
+- Created custom hooks for to wrap the logic 
+- Created every component from scratch (reusable and customizable)
+- A fully responsive web app
+- Cross browser compatibility
+- Created custom loader Screen / Component
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🧼 What can be added?
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Here is the list of requested features and details done for the challenge
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Unit and integration tests 
+- Modal to display more details for ships 
+- Theming (Dark/Light)
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+</br>
+
+<h1 align="center"> Enjoy </h1>
+
+<h3 align="center">
+  <b align="center">
+      - In Code We Trust - 
+  </b>
+</h3>
